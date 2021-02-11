@@ -1,0 +1,19 @@
+{
+  "name": "fl3xice/permissions",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "flexice",
+      "email": "flexice@protonmail.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "flexice\\": "src"
+    }
+  }
+}
