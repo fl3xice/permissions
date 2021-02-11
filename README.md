@@ -36,7 +36,7 @@ try {
     $GroupRoles = new Group([
         $GuestRole, $UserRole, $AdminRole
     ]);
-    
+     
     // Manager Permissions
     $PM = new PermissionsManager($GroupRoles);
     
@@ -48,3 +48,26 @@ try {
     // Your code
 }
 ```
+
+## Group
+
+You can add all roles in the Group constructor or using the addRole method.
+```php
+    $GroupRoles = new Group([
+        $GuestRole, $UserRole, $AdminRole
+    ]);
+```
+### or
+```php
+    $GroupRoles = new Group();
+    $GroupRoles->addRole($GuestRole);
+    $GroupRoles->addRole($UserRole);
+    $GroupRoles->addRole($AdminRole);
+```
+
+## PermissionsManager
+
+### hasPermission(_nameRole_, _permission_)
+- Role name case is ignored as well as permissions
+- return true or false
+
