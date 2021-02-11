@@ -11,6 +11,7 @@ class Role
     public $name;
     protected $inherited;
     protected $permissions;
+    protected $lockedPermissions;
 
     /**
      * Role constructor.
@@ -22,6 +23,7 @@ class Role
         $this->name = mb_strtolower($name);
         $this->permissions = array_map('strtolower', $permissions);
         $this->inherited = [];
+        $this->lockedPermissions = [];
     }
 
     /**
@@ -40,6 +42,14 @@ class Role
         $this->permissions = array_merge($this->permissions, $role->permissions);
         $this->inherited[] = $role;
         return true;
+    }
+
+    /**
+     * @param string $permission
+     */
+    public function permissionLock(string $permission) {
+        $this->lockedPermissions[] = strtolower($permission);
+        $this->permissions = array_diff($this->permissions, $this->lockedPermissions);
     }
 
     /**
