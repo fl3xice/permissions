@@ -1,16 +1,15 @@
 {
   "name": "fl3xice/permissions",
-  "description": "description",
+  "description": "Library for creating and controlling permissions",
   "minimum-stability": "stable",
   "license": "MIT",
+  "version": "1.0.0",
   "authors": [
     {
       "name": "flexice",
       "email": "flexice@protonmail.com"
     }
   ],
-  "require": {
-  },
   "autoload": {
     "psr-4": {
       "flexice\\": "src"
