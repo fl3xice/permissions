@@ -1,5 +1,10 @@
 # Permissions
 
+## Composer require
+```shell
+composer require fl3xice/permissions
+```
+
 ```php
 <?php
 
