@@ -37,6 +37,9 @@ try {
     $UserRole->inheritPermissions($GuestRole);
     $AdminRole->inheritPermissions($UserRole);
     
+    // You can lock any permission
+    $UserRole->permissionLock('get.personal.lang');
+    
     // Create Group of roles
     $GroupRoles = new Group([
         $GuestRole, $UserRole, $AdminRole
