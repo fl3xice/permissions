@@ -8,26 +8,44 @@ class ConvertTest extends TestCase
     public function testFromArrayToPermissionsManager()
     {
         $roles = [
+            "guest" => [
+                "permissions" => [
+                    "required.disable.adblock",
+                    "web.show.content"
+                ]
+            ],
             "user" => [
                 "permissions" => [
-                    "test"
+                    "test.permission.1",
+                    "test.permission.2",
+                    "test.permission.3"
+                ],
+                "inherit" => [
+                    "guest"
+                ],
+                "permissions-lock" => [
+                    "required.disable.adblock"
                 ]
             ],
             "admin" => [
-                "inherit" => [
-                    "user"
-                ],
                 "permissions" => [
-                    "test2"
+                    "admin.panel",
+                    "test.permission.4"
+                ],
+                "inherit" => [
+                    "guest",
+                    "user"
                 ]
             ]
         ];
 
         $PM = Convert::fromArrayToPermissionsManager($roles);
+
         try {
-            $this->assertEquals(true, $PM->hasPermission('user', 'test'));
-            $this->assertEquals(true, $PM->hasPermission('admin', 'test'));
-            $this->assertEquals(true, $PM->hasPermission('admin', 'test2'));
+            $this->assertEquals(false, $PM->hasPermission('user', 'required.disable.adblock'));
+            $this->assertEquals(true, $PM->hasPermission('admin', 'test.permission.1'));
+            $this->assertEquals(true, $PM->hasPermission('admin', 'test.permission.4'));
+            $this->assertEquals(true, $PM->hasPermission('admin', 'required.disable.adblock'));
         } catch (Exception $e) {
             print $e->getMessage();
         }
