@@ -10,6 +10,9 @@
       "email": "flexice@protonmail.com"
     }
   ],
+  "require-dev": {
+    "phpunit/phpunit": "9.5.2"
+  },
   "autoload": {
     "psr-4": {
       "flexice\\": "src"

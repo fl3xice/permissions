@@ -2,3 +2,5 @@
 vendor
 demo
 composer.phar
+phpunit.phar
+.phpunit.result.cache
