@@ -73,6 +73,48 @@ You can add all roles in the Group constructor or using the addRole method.
     $GroupRoles->addRole($AdminRole);
 ```
 
+## Generate PermissionsManager from default array
+
+```php
+
+use flexice\Convert;
+
+$ROLES = [
+    "guest" => [
+        "permissions" => [
+            "required.disable.adblock",
+            "web.show.content"
+        ]
+    ],
+    "user" => [
+        "permissions" => [
+            "test.permission.1",
+            "test.permission.2",
+            "test.permission.3"
+        ],
+        "inherit" => [
+            "guest"
+        ],
+        "permissions-lock" => [
+            "required.disable.adblock"
+        ]
+    ],
+    "admin" => [
+        "permissions" => [
+            "admin.panel",
+            "test.permission.4"
+        ],
+        "inherit" => [
+            "guest",
+            "user"
+        ]
+    ]
+];
+
+$PM = Convert::fromArrayToPermissionsManager($ROLES);
+$PM->hasPermission("user", "required.disable.adblock"); // false
+```
+
 ## PermissionsManager
 
 ### hasPermission(_nameRole_, _permission_)
